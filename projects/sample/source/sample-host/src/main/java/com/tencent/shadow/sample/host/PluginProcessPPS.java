@@ -18,11 +18,14 @@
 
 package com.tencent.shadow.sample.host;
 
+import android.content.ContextWrapper;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.util.Log;
 
 import com.tencent.shadow.dynamic.host.PluginProcessService;
+import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainerHolder;
 import com.tencent.shadow.sample.host.lib.LoadPluginCallback;
 
 public class PluginProcessPPS extends PluginProcessService {
@@ -37,6 +40,14 @@ public class PluginProcessPPS extends PluginProcessService {
             @Override
             public void afterLoadPlugin(String partKey, ApplicationInfo applicationInfo, ClassLoader pluginClassLoader, Resources pluginResources) {
                 Log.d("PluginProcessPPS", "afterLoadPlugin(" + partKey + "," + applicationInfo.className + "{metaData=" + applicationInfo.metaData + "}" + "," + pluginClassLoader + ")");
+                HostApplication.getApp().setPluginResources(pluginResources);
+                HostAddPluginViewContainerHolder.pluginResources = pluginResources;
+                HostAddPluginViewContainerHolder.pluginClassLoader = pluginClassLoader;
+
+
+
+                //pluginClassLoader.loadClass("")
+                //ContextWrapper a = new ContextWrapper();
             }
         });
     }

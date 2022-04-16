@@ -19,12 +19,14 @@
 package com.tencent.shadow.sample.plugin.app.lib.usecases.activity;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.tencent.shadow.sample.plugin.app.lib.R;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.entity.UseCase;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.util.ToastUtil;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.IgetTestFragment;
 
 public class TestActivityOnCreate extends Activity {
 
@@ -50,6 +52,11 @@ public class TestActivityOnCreate extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_lifecycle);
         ToastUtil.showToast(this, "onCreate");
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.layout_container, IgetTestFragment.newInstance(null));
+        fragmentTransaction.commit();
+
     }
 
     @Override

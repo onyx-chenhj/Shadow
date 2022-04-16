@@ -21,6 +21,7 @@ package com.tencent.shadow.sample.host;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.StrictMode;
 import android.webkit.WebView;
@@ -39,6 +40,7 @@ public class HostApplication extends Application {
     private static HostApplication sApp;
 
     private PluginManager mPluginManager;
+    private Resources pluginResources;
 
     @Override
     public void onCreate() {
@@ -103,5 +105,13 @@ public class HostApplication extends Application {
         }
 
         return currentProcName.endsWith(processName);
+    }
+
+    public void setPluginResources(Resources pluginResources) {
+        this.pluginResources = pluginResources;
+    }
+
+    public Resources getPluginResources() {
+        return pluginResources;
     }
 }
