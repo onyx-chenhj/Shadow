@@ -20,5 +20,11 @@
     <!-- Simple strings. -->
     <string name="app_name">Shadow主测试用例集合</string>
     <string name="host_add_plugin_view">这是插件中的string资源</string>
+
+
+    <string name="so_msg1">这是插件中的string资源,测试使用</string>
+    <string name="so_button_test1">open activity</string>
+
+    <string name="so_msg2">这个插件中得到的string</string>
 </resources>
 

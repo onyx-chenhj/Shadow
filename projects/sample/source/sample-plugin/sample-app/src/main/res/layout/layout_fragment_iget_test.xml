@@ -40,7 +40,7 @@
         android:layout_gravity="center"
         android:textColor="@android:color/black"
         android:textSize="22sp"
-        android:text="@string/so_msg1" />
+        android:text="@string/so_msg2" />
 
     <Button
         android:id="@+id/btn_test1"
@@ -50,11 +50,5 @@
         android:textColor="@android:color/black"
         android:textSize="22sp"
         android:text="@string/so_button_test1" />
-
-    <FrameLayout
-        android:id="@+id/layout_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
 
 </LinearLayout>

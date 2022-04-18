@@ -19,14 +19,10 @@
 package com.tencent.shadow.sample.plugin.app.lib.usecases.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-/*import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;*/
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,37 +31,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-/*import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;*/
+//import androidx.fragment.app.Fragment;
 
 import com.tencent.shadow.sample.host.lib.BaseFragment;
 import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainerHolder;
 import com.tencent.shadow.sample.plugin.app.lib.R;
 import com.tencent.shadow.sample.plugin.app.lib.UseCaseApplication;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityOnCreate;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityReCreate;
 
-public class TestFragment extends Fragment {
+public class IgetTestFragment extends Fragment {
 
-    public static TestFragment newInstance(Bundle bundle) {
-        TestFragment testFragment = new TestFragment();
+    public static IgetTestFragment newInstance(Bundle bundle) {
+        IgetTestFragment testFragment = new IgetTestFragment();
         testFragment.setArguments(bundle);
         return testFragment;
     }
-
-    public static TestFragment newInstance(Context context, Bundle bundle) {
-        TestFragment testFragment = new TestFragment();
-        testFragment.setArguments(bundle);
-        //testFragment.setPluginContext(context);
-        return testFragment;
-    }
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         //View view = inflater.inflate(R.layout.layout_fragment_test, null, false);
         //View view = inflater.inflate(HostAddPluginViewContainerHolder.pluginResources.getLayout(R.layout.layout_fragment_test), null, false);
-        View view = LayoutInflater.from(UseCaseApplication.getInstance()).inflate(R.layout.layout_fragment_test, null, false);
+        View view = LayoutInflater.from(UseCaseApplication.getInstance()).inflate(R.layout.layout_fragment_iget_test, null, false);
+        //View view = inflater.inflate(R.layout.layout_fragment_iget_test, null, false);
         TextView textView = view.findViewById(R.id.tv_msg);
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -79,24 +68,17 @@ public class TestFragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("chenhj", "aa在插件中启动activity");
-                /*Intent intent = new Intent(getPluginContext(), TestActivityOnCreate.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getPluginContext().startActivity(intent);*/
-
-                Intent intent = new Intent(UseCaseApplication.getInstance(), TestActivityOnCreate.class);
+                Log.e("chenhj", "11122在插件中igetfragment启动activity");
+                Intent intent = new Intent(UseCaseApplication.getInstance(), TestActivityReCreate.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 UseCaseApplication.getInstance().startActivity(intent);
 
+                /*Intent intent = new Intent(getContext(), TestActivityReCreate.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);*/
+
             }
         });
-
-        IgetTestFragment igetTestFragment = IgetTestFragment.newInstance(null);
-
-        //FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.layout_container, igetTestFragment);
-        fragmentTransaction.commit();
 
         return view;
     }

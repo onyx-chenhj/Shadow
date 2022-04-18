@@ -29,9 +29,13 @@ import com.tencent.shadow.sample.plugin.app.lib.usecases.receiver.TestReceiverAc
 import com.tencent.shadow.sample.plugin.app.lib.usecases.webview.WebViewActivity;
 
 public class UseCaseApplication extends Application {
+
+    private static UseCaseApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         initCase();
     }
 
@@ -97,5 +101,9 @@ public class UseCaseApplication extends Application {
                 new PluginUseHostClassActivity.Case(),
         });
         useCases.add(communicationCategory);
+    }
+
+    public static UseCaseApplication getInstance() {
+        return instance;
     }
 }
