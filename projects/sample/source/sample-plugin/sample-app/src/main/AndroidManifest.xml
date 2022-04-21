@@ -30,6 +30,13 @@
             android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityWindowSoftMode"
             android:windowSoftInputMode="stateVisible" />
 
+        <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestAppCompatActivityOnCreate"
+            android:theme="@style/Theme.AppCompat"
+            />
+
+        <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestFragmentActivityOnCreate"
+            />
+
         <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.provider.TestDBContentProviderActivity" />
 
         <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityReCreateBySystem" />

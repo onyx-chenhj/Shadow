@@ -14,6 +14,8 @@ import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityRe
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityReCreateBySystem;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivitySetTheme;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityWindowSoftMode;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestAppCompatActivityOnCreate;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestFragmentActivityOnCreate;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ActivityContextSubDirTestActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ApplicationContextSubDirTestActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.dialog.TestDialogActivity;
@@ -51,6 +53,8 @@ public class UseCaseApplication extends Application {
                 new TestActivityWindowSoftMode.Case(),
                 new TestActivitySetTheme.Case(),
                 new TestActivityOptionMenu.Case(),
+                new TestAppCompatActivityOnCreate.Case(),
+                new TestFragmentActivityOnCreate.Case(),
                 new WebViewActivity.Case()
         });
         useCases.add(activityCategory);
