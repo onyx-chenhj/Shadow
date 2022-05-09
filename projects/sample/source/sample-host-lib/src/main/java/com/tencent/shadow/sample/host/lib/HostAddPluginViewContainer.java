@@ -4,4 +4,5 @@ import android.view.View;
 
 public interface HostAddPluginViewContainer {
     void addView(View view);
+    void addFragment(BaseFragment fragment);
 }

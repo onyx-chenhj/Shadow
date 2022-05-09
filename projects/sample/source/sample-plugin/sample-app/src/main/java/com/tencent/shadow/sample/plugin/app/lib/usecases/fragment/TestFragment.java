@@ -18,16 +18,19 @@
 
 package com.tencent.shadow.sample.plugin.app.lib.usecases.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.tencent.shadow.sample.host.lib.BaseFragment;
 import com.tencent.shadow.sample.plugin.app.lib.R;
+import com.tencent.shadow.sample.plugin.app.lib.UseCaseApplication;
 
 public class TestFragment extends Fragment {
 
@@ -41,7 +44,8 @@ public class TestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_fragment_test, null, false);
+        //View view = inflater.inflate(R.layout.layout_fragment_test, null, false);
+        View view = LayoutInflater.from(UseCaseApplication.getInstance()).inflate(R.layout.layout_fragment_test, null, false);
         TextView textView = view.findViewById(R.id.tv_msg);
         Bundle bundle = getArguments();
         if (bundle != null) {

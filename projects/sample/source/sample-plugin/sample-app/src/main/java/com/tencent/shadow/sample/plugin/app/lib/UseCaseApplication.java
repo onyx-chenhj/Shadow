@@ -4,6 +4,7 @@ import static com.tencent.shadow.sample.plugin.app.lib.gallery.cases.UseCaseMana
 
 import android.app.Application;
 
+//import com.luojilab.bookcitysdk.InitApplication;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.UseCaseManager;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.entity.UseCase;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.entity.UseCaseCategory;
@@ -14,6 +15,7 @@ import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityRe
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityReCreateBySystem;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivitySetTheme;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityWindowSoftMode;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestFragmentActivityOnCreate;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ActivityContextSubDirTestActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ApplicationContextSubDirTestActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.dialog.TestDialogActivity;
@@ -29,10 +31,18 @@ import com.tencent.shadow.sample.plugin.app.lib.usecases.receiver.TestReceiverAc
 import com.tencent.shadow.sample.plugin.app.lib.usecases.webview.WebViewActivity;
 
 public class UseCaseApplication extends Application {
+
+    private static UseCaseApplication instance;
+
+    //private static final String APP_ID = "27fd89593afefeb800962aa6e2eff927c09c2c67";//8953
+    private static final String APP_ID = "99d3a7d7308ce5fba38560c10c012c4ac7c75073";//636
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         initCase();
+        //InitApplication.initAppWhenApplicationCallOnCreate(this, APP_ID);
     }
 
     private static void initCase() {
@@ -51,6 +61,7 @@ public class UseCaseApplication extends Application {
                 new TestActivityWindowSoftMode.Case(),
                 new TestActivitySetTheme.Case(),
                 new TestActivityOptionMenu.Case(),
+                new TestFragmentActivityOnCreate.Case(),
                 new WebViewActivity.Case()
         });
         useCases.add(activityCategory);
@@ -97,5 +108,9 @@ public class UseCaseApplication extends Application {
                 new PluginUseHostClassActivity.Case(),
         });
         useCases.add(communicationCategory);
+    }
+
+    public static UseCaseApplication getInstance() {
+        return instance;
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainer;
 import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainerHolder;
 import com.tencent.shadow.sample.plugin.app.lib.R;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.IgetShopFragment;
 
 public class HostAddPluginViewService extends IntentService {
     private final Handler uiHandler = new Handler(Looper.getMainLooper());
@@ -26,9 +27,14 @@ public class HostAddPluginViewService extends IntentService {
                 = HostAddPluginViewContainerHolder.instances.remove(id);
 
         uiHandler.post(() -> {
-            View view = LayoutInflater.from(this).inflate(
+            /*View view = LayoutInflater.from(this).inflate(
                     R.layout.layout_host_add_plugin_view, null, false);
-            viewContainer.addView(view);
+            viewContainer.addView(view);*/
+
+            IgetShopFragment igetShopFragment = IgetShopFragment.newInstance(null);
+            viewContainer.addFragment(igetShopFragment);
+
+
         });
     }
 }

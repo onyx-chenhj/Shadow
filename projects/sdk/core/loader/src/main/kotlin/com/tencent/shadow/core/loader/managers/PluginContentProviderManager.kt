@@ -107,10 +107,10 @@ class PluginContentProviderManager() : UriConverter.UriParseDelegate {
                 contentProvider?.attachInfo(context, providerInfo)
                 providerMap[it.authorities] = contentProvider
             } catch (e: Exception) {
-                throw RuntimeException(
+                /*throw RuntimeException(
                     "partKey==$partKey className==${it.className} authorities==${it.authorities}",
                     e
-                )
+                )*/
             }
         }
 

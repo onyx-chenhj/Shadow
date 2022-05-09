@@ -20,12 +20,13 @@ package com.tencent.shadow.sample.plugin.app.lib.usecases.fragment;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.tencent.shadow.sample.plugin.app.lib.R;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.BaseActivity;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.entity.UseCase;
 
-public class TestDynamicFragmentActivity extends BaseActivity {
+public class TestDynamicFragmentActivity extends FragmentActivity {
 
     public static class Case extends UseCase {
         @Override
@@ -53,6 +54,6 @@ public class TestDynamicFragmentActivity extends BaseActivity {
         Bundle bundle = new Bundle();
         bundle.putString("msg", msg);
         TestFragment testFragment = TestFragment.newInstance(bundle);
-        getFragmentManager().beginTransaction().add(R.id.fragment_container, testFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, testFragment).commit();
     }
 }

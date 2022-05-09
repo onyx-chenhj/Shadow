@@ -18,6 +18,29 @@ buildscript {
             google()
             jcenter()
         }
+
+        maven {
+            allowInsecureProtocol = true
+            url "http://nexus.luojilab.com/repository/igetapp/"
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            url "http://nexus.luojilab.com/repository/bookcity/"
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$build_gradle_version"
@@ -26,6 +49,73 @@ buildscript {
         classpath 'com.tencent.shadow.coding:common-jar-settings'
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            allowInsecureProtocol = true
+            url "http://nexus.luojilab.com/repository/igetapp/"
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            url "http://nexus.luojilab.com/repository/bookcity/"
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/google'
+        }
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+
+        maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        maven {
+            name = "GitHubPackages"
+            url "https://maven.pkg.github.com/tencent/shadow"
+            //一个只读账号兼容Github Packages暂时不支持匿名下载
+            //https://github.community/t/download-from-github-package-registry-without-authentication/14407
+            credentials {
+                username = 'readonlypat'
+                password = '\u0067hp_s3VOOZnLf1bTyvHWblPfaessrVYyEU4JdNbs'
+            }
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            url "http://repo.boox.com/repository/maven-onyx/"
+            credentials {
+                // set your user and api key at ~/.gradle/gradle.properties
+                // in the form of:
+                // onyxNexusUser=YOUR_USER_NAME
+                // onyxNexusPassword=YOUR_PASSWORD
+                username = "$onyxNexusUser"
+                password = "$onyxNexusPassword"
+            }
+        }
+
+        repositories {
+            flatDir {
+                dirs 'libs' //this way we can find the .aar file in libs folder
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
 apply from: 'buildScripts/gradle/common.gradle'
 
 apply from: "buildScripts/gradle/maven.gradle"

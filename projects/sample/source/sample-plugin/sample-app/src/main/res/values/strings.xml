@@ -20,5 +20,11 @@
     <!-- Simple strings. -->
     <string name="app_name">Shadow主测试用例集合</string>
     <string name="host_add_plugin_view">这是插件中的string资源</string>
+
+    <string name="test_msg1">插件string fragmentx</string>
+    <string name="test_msg2">插件string</string>
+
+    <string name="igetshop_msg">这是得到书城activity</string>
+    <string name="igetshop_msg2">这是得到书城fragment</string>
 </resources>
 

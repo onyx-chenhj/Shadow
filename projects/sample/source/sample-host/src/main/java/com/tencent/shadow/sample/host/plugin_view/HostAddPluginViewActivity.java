@@ -3,16 +3,25 @@ package com.tencent.shadow.sample.host.plugin_view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.tencent.shadow.sample.host.R;
+import com.tencent.shadow.sample.host.lib.BaseFragment;
 import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainer;
 import com.tencent.shadow.sample.host.lib.HostAddPluginViewContainerHolder;
 
-public class HostAddPluginViewActivity extends Activity implements HostAddPluginViewContainer {
+public class HostAddPluginViewActivity extends FragmentActivity implements HostAddPluginViewContainer {
     private ViewGroup mPluginViewContainer;
 
     @Override
@@ -21,6 +30,12 @@ public class HostAddPluginViewActivity extends Activity implements HostAddPlugin
 
         LinearLayout activityContentView = new LinearLayout(this);
         activityContentView.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams rootmatchContent = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        activityContentView.setLayoutParams(rootmatchContent);
 
         LinearLayout.LayoutParams wrapContent = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -34,10 +49,16 @@ public class HostAddPluginViewActivity extends Activity implements HostAddPlugin
         Button loadButton = new Button(this);
         loadButton.setText("加载插件View");
         loadButton.setOnClickListener(this::loadPluginView);
+        //loadButton.setOnClickListener(this::addPluginFragmentx);
         loadButton.setLayoutParams(wrapContent);
 
+        LinearLayout.LayoutParams matchContent = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
         ViewGroup pluginViewContainer = new LinearLayout(this);
-        pluginViewContainer.setLayoutParams(wrapContent);
+        pluginViewContainer.setLayoutParams(matchContent);
+        pluginViewContainer.setId(R.id.id_fragment);
         mPluginViewContainer = pluginViewContainer;
 
         View[] views = {
@@ -70,5 +91,63 @@ public class HostAddPluginViewActivity extends Activity implements HostAddPlugin
     @Override
     public void addView(View view) {
         mPluginViewContainer.addView(view);
+    }
+
+    @Override
+    public void addFragment(BaseFragment fragment) {
+        try {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            Log.e("chenhj", "HostAddPluginViewActivity:mPluginViewContainer id::" + mPluginViewContainer.getId());
+            Log.e("chenhj", "HostAddPluginViewActivity:fragment::" + fragment);
+            fragmentTransaction.replace(mPluginViewContainer.getId(), fragment);
+            fragmentTransaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /*public void addPluginFragment(View view) {
+        BaseFragment fragment2 = null;
+        try {
+            fragment2 = HostAddPluginViewContainerHolder.pluginClassLoader.loadClass("com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.IgetShopFragment").asSubclass(BaseFragment.class).newInstance();
+            //fragment2 = HostAddPluginViewContainerHolder.pluginClassLoader.loadClass("com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.IgetShopFragment").asSubclass(Fragment.class).newInstance();
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            Log.e("chenhj", "HostAddPluginViewActivity:mPluginViewContainer id::" + mPluginViewContainer.getId());
+            Log.e("chenhj", "HostAddPluginViewActivity:fragment2::" + fragment2);
+            fragmentTransaction.replace(mPluginViewContainer.getId(), fragment2);
+            fragmentTransaction.commit();
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    public void addPluginFragmentx(View view) {
+        BaseFragment fragment2 = null;
+        try {
+            //fragment2 = HostAddPluginViewContainerHolder.pluginClassLoader.loadClass("com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.TestFragment").asSubclass(Fragment.class).newInstance();
+            fragment2 = HostAddPluginViewContainerHolder.pluginClassLoader.loadClass("com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.IgetShopFragment").asSubclass(BaseFragment.class).newInstance();
+
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            Log.e("chenhj", "HostAddPluginViewActivity:mPluginViewContainer id::" + mPluginViewContainer.getId());
+            Log.e("chenhj", "HostAddPluginViewActivity:fragment2::" + fragment2);
+            fragmentTransaction.replace(mPluginViewContainer.getId(), fragment2);
+            fragmentTransaction.commit();
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

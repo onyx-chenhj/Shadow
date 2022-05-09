@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tencent.shadow.sample.plugin.app.lib">
 
     <uses-feature android:glEsVersion="0x00020000" />
@@ -20,6 +21,7 @@
         <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityOptionMenu" />
 
         <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityOnCreate" />
+        <activity android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestFragmentActivityOnCreate" />
 
         <activity
             android:name="com.tencent.shadow.sample.plugin.app.lib.usecases.activity.TestActivityOrientation"

@@ -51,10 +51,26 @@ android {
         abortOnError false
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+        exclude 'META-INF/*.kotlin_module'
+    }
+
     // 将插件的资源ID分区改为和宿主0x7F不同的值
     aaptOptions {
         additionalParameters "--package-id", "0x7E", "--allow-reserved-package-id"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+
 }
 
 dependencies {
@@ -69,7 +85,13 @@ dependencies {
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     pluginCompileOnly 'com.tencent.shadow.core:runtime'
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    /*implementation ("com.luojilab.bookcity:bookcitysdk:1.9") {
+        exclude group: 'androidx.appcompat',module: 'appcompat'
+    }*/
+    /*implementation ("com.luojilab.bookcity:bookcitysdk:1.9.1") {
+        exclude group: 'com.onyx.android.sdk',module: 'onyxsdk-base'
+    }*/
 }
 
 preBuild.dependsOn(":sample-host-lib:jarDebugPackage")

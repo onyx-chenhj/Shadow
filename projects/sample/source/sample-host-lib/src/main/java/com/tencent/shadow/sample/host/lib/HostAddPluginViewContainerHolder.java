@@ -5,4 +5,5 @@ import java.util.Map;
 
 public class HostAddPluginViewContainerHolder {
     public final static Map<Integer, HostAddPluginViewContainer> instances = new HashMap<>();
+    public static ClassLoader pluginClassLoader;
 }

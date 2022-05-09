@@ -38,7 +38,13 @@ public class ShadowPackageItemInfo {
         if (packageItemInfo.metaData != null) {
             int resid = packageItemInfo.metaData.getInt(name);
             if (resid != 0) {
-                return resources.getXml(resid);
+                XmlResourceParser xmlResourceParser = null;
+                try {
+                    xmlResourceParser = resources.getXml(resid);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return xmlResourceParser;
             }
         }
         return null;
